@@ -1,0 +1,53 @@
+body {
+    background: rgba(0, 20, 100, 0.8);
+}
+
+.title {
+    color: rgba(255, 255, 255, 0.8);
+    font-family: Verdana, sans-serif;
+    margin-bottom: 50px;
+}
+
+.user-input-container {
+    background: rgba(255, 255, 255, 0.8);
+    height: 400px;
+    position: relative;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+#map {
+    margin: 0 auto;
+    width: 600px;
+    height: 400px;
+}
+
+.center {
+    text-align: center;
+}
+
+@media screen and (max-width: 991px) {
+    .user-input-container {
+        width: 400px;
+        margin: 20px auto;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #map {
+        width: 400px;
+        height: 350px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .user-input-container {
+        max-width: 300px;
+        margin: 20px auto;
+    }
+
+    #map {
+        max-width: 300px;
+        max-height: 200px;
+        margin-bottom: 50px;
+    }
+}
