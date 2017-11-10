@@ -134,20 +134,19 @@
             else {
 
                 // Location title
-                if (data.title) {
-                    innerHTML += '<h2 class="marker-title">' + data.title + '</h2>';
-                }
+                innerHTML += '<h2>' + data.title + '</h2>';
 
                 // Photo of location
                 if (data.photo) {
                     var photoSrc = data.photo.prefix + 300 + data.photo.suffix;
-                    innerHTML += '<img class="information-window-image" src="' + photoSrc + '" alt="Location image">';
+                    var photoAlt = 'Location image for ' + data.title;
+                    innerHTML += '<img class="information-window-image" src="' + photoSrc + '" alt="' + photoAlt + '">';
                 }
 
                 // Popular times for the business
                 if (data.timeframes.length > 0) {
 
-                    innerHTML += '<br><br><br><h4>Popular Hours:</h4>';
+                    innerHTML += '<br><br><br><div class="center"><h4>Popular Hours:</h4>';
 
                     var daysInOrder = data.timeframes.slice(0).sort(function (a, b) {
                         if (a.days[0] < b.days[0]) {
@@ -169,10 +168,12 @@
                         end = this.convert24HoursTo12(day.open[0].end);
                         innerHTML += dayOfWeek + ': ' + start + ' - ' + end + '<br>';
                     }
+
+                    innerHTML += '</div>';
                 }
             }
 
-            innerHTML += '</div>';
+            innerHTML += '<br><br><div class="center third-party-label">Information provided by Foursquare</div></div>';
 
             View.mainInfoWindow.marker = marker;
             View.mainInfoWindow.setContent(innerHTML);
@@ -185,7 +186,8 @@
 
             var timeToAnimate = this.isSliderWindowOpen ? 300 : 150;
 
-            var leftPx = Math.ceil($('#slider-menu-window').width() * 0.8);
+            // var leftPx = Math.ceil( * 0.8);
+            var leftPx = 370;
             $('#slider-menu-window').animate({
                 left: (this.isSliderWindowOpen ? '+=' : '-=') + leftPx
             }, timeToAnimate);
@@ -227,11 +229,9 @@
         },
 
         dayOfWeekByNumber: function (value) {
-            if (value < 0 || value > 7) {
-                return '';
-            }
+            if (value < 1 || value > 7) { return ''; }
 
-            return ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'][value - 1];
+            return ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'][value - 1];
         },
 
         convert24HoursTo12: function (time) {
