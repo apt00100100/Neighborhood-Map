@@ -19,4 +19,4 @@ $   npm install
 
 ### View Final Project Via Github
 
-[View Final](https://apt00100100.github.io/Neighborhood-Map/)
+[View Final](https://apt00100100.github.io/Neighborhood-Map/index.html)
