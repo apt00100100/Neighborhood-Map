@@ -6,6 +6,5 @@
   "dependencies": {
     "knockout": "3.4.2",
     "jquery": "3.2.1"
-  },
-  "devDependencies": {}
+  }
 }
