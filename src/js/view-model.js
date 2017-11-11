@@ -12,8 +12,10 @@
          * Initialize
          * ==============================================
          */
+        this.View = View; // Required for data-bind event calls
         this.listOfSearchLocations = ko.observableArray(hotSpots);
         this.toggleMarkerInformation = toggleMarkerInformation;
+        this.filterMarkersByText = filterMarkersByText;
 
         initialize();
 
@@ -36,19 +38,11 @@
             //
             View.initMarkers(hotSpots);
 
-            // Add event listeners
+            // Add marker click event listeners
             //
             var markers = View.markers;
             var i, n = markers.length;
             for (i = 0; i < n; ++i) { markers[i].addListener('click', toggleMarkerInformation.bind(this, markers[i].id)); }
-            // Toggle the slider window in/out
-            View.showAreaButtonElem.addEventListener('click', View.toggleIsSliderWindowOpen);
-            // Clear the info window marker data
-            View.mainInfoWindow.addListener('closeclick', View.closeMainInfoWindow.bind(View));
-            // Filter the list view by user input
-            View.searchBoxInputElem.addEventListener('input', function (event) {
-                filterMarkersByText(event.target.value.toString());
-            });
         }
 
         /**
@@ -62,6 +56,7 @@
                 var oldId = View.mainInfoWindow.marker.id;
 
                 View.closeMainInfoWindow();
+                filterMarkersByText();
 
                 // The same location has been clicked (BAIL!!)
                 if (oldId === id) { return; }
@@ -187,7 +182,9 @@
             });
         }
 
-        function filterMarkersByText(text) {
+        function filterMarkersByText() {
+
+            var text = $('#search-box-input').val();
 
             if (text === '') {
                 self.listOfSearchLocations(hotSpots);

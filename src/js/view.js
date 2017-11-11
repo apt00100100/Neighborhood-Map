@@ -47,6 +47,8 @@
 
             this.mapComponent = new google.maps.Map(this.mapElem, mapConfig || {});
             this.mainInfoWindow = new google.maps.InfoWindow();
+
+            this.mainInfoWindow.addListener('closeclick', this.closeMainInfoWindow.bind(this));
         },
 
         initMarkers: function (listOfSpots) {
@@ -64,6 +66,7 @@
                     animation: google.maps.Animation.DROP
                 });
                 marker.data = spot;
+                marker.setMap(this.mapComponent);
 
                 this.markers.push(marker);
             }
@@ -79,7 +82,7 @@
 
             var i, n = listOfMarkers.length;
             for (i = 0; i < n; ++i) {
-                listOfMarkers[i].setMap(null);
+                listOfMarkers[i].setVisible(false);
             }
         },
 
@@ -107,7 +110,7 @@
 
             for (i = 0; i < n; ++i) {
                 marker = listOfMarkers[i];
-                marker.setMap(this.mapComponent);
+                listOfMarkers[i].setVisible(true);
                 bounds.extend(marker.position);
             }
 

@@ -11,7 +11,7 @@ The project can be found on github [here](https://github.com/apt00100100/Neighbo
 ```
 $   git clone https://github.com/apt00100100/Neighborhood-Map.git
 ```
-2. Install node modules
+2. Install node modules (optional)
 ```
 $   npm install
 ```
@@ -20,3 +20,7 @@ $   npm install
 ### View Final Project Via Github
 
 [View Final](https://apt00100100.github.io/Neighborhood-Map/)
+
+### 3rd Party APIs
+* Google
+* Foursquare

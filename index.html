@@ -3,25 +3,28 @@
     <head>
         <meta charset="UTF-8">
         <title>Neighborhood Map</title>
-        <meta name=“viewport” content=“width=device-width”>
+        <meta name=“viewport” content=“width=device-width, initial-scale=1”>
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700" rel="stylesheet" media="screen">
         <link rel="stylesheet" href="src/css/styles.css" media="screen">
     </head>
     <body>
 
-        <div id="content">
+        <section id="content">
 
-            <div class="google-map-container">
+            <main class="google-map-container">
                 <div id="map"></div>
-            </div>
+            </main>
 
-            <div id="slider-menu-window">
+            <aside id="slider-menu-window">
 
-                <div class="input-area">
+                <article class="input-area">
+
                     <h1 class="main-title">Neighborhood Map</h1>
 
                     <div>
-                        <input type="text" id="search-box-input" placeholder="Filter" >
+                        <input type="text" id="search-box-input" placeholder="Filter"
+                               data-bind="event: { input: filterMarkersByText }"
+                        >
                     </div>
 
                     <ul id="list-of-locations" data-bind="foreach: listOfSearchLocations">
@@ -31,33 +34,33 @@
                             click: $parent.toggleMarkerInformation.bind($data, place_id)
                         "></li>
                     </ul>
-                </div>
+                </article>
 
-                <div class="slide-area">
-                    <div id="show-area-button">
+                <article class="slide-area">
+                    <div id="show-area-button" data-bind="click: View.toggleIsSliderWindowOpen">
                         <div class="hamburger-line"></div>
                         <div class="hamburger-line"></div>
                         <div class="hamburger-line"></div>
                     </div>
-                </div>
+                </article>
 
-            </div>
-        </div>
+            </aside>
+        </section>
 
-        <div id="error" class="error-message"></div>
-
+        <footer id="error" class="error-message"></footer>
 
         <!-- Libs -->
         <script src="./node_modules/knockout/build/output/knockout-latest.js"></script>
         <script src="./node_modules/jquery/dist/jquery.min.js"></script>
 
         <!-- App -->
-        <script src="./src/js/model.js" async></script>
-        <script src="./src/js/view.js" async></script>
-        <script src="./src/js/view-model.js" async></script>
-        <script src="./src/js/app.js" async></script>
+        <script src="./src/js/model.js"></script>
+        <script src="./src/js/view.js"></script>
+        <script src="./src/js/view-model.js"></script>
+        <script src="./src/js/app.js"></script>
 
         <!-- Google Maps API -->
         <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDynaVV7eYpH8XhGlOg4YCnUbHTURzm8Gk&v=3&callback=initGoogleMap" onerror="errorLoadingGoogleMap()" async defer></script>
+
     </body>
 </html>
