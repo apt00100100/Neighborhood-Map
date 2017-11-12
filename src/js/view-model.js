@@ -13,9 +13,10 @@
          * ==============================================
          */
         this.View = View; // Required for data-bind event calls
-        this.listOfSearchLocations = ko.observableArray(hotSpots);
         this.toggleMarkerInformation = toggleMarkerInformation;
         this.filterMarkersByText = filterMarkersByText;
+        this.listOfSearchLocations = ko.observableArray(hotSpots);
+        this.searchBoxInputText = ko.observable('');
 
         initialize();
 
@@ -184,8 +185,7 @@
 
         function filterMarkersByText() {
 
-            var text = $('#search-box-input').val();
-
+            var text = self.searchBoxInputText();
             if (text === '') {
                 self.listOfSearchLocations(hotSpots);
                 View.displayMarkers();

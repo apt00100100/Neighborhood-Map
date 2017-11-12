@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Neighborhood Map</title>
-        <meta name=“viewport” content=“width=device-width, initial-scale=1”>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700" rel="stylesheet" media="screen">
         <link rel="stylesheet" href="src/css/styles.css" media="screen">
     </head>
@@ -23,8 +23,10 @@
 
                     <div>
                         <input type="text" id="search-box-input" placeholder="Filter"
-                               data-bind="event: { input: filterMarkersByText }"
-                        >
+                               data-bind="
+                               textInput: searchBoxInputText,
+                               event: { input: filterMarkersByText }
+                        ">
                     </div>
 
                     <ul id="list-of-locations" data-bind="foreach: listOfSearchLocations">
